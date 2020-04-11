@@ -15,11 +15,11 @@ public class CategoryController {
    private CategoryRepository categoryRepository;
 
    public CategoryController(CategoryRepository categoryRepository) {
-			   super();
-			   this.categoryRepository = categoryRepository;
+      super();
+      this.categoryRepository = categoryRepository;
    }
 
-			@GetMapping("/categories")
+   @GetMapping("/categories")
    Collection<Category> categories(){
       return categoryRepository.findAll();
    }
