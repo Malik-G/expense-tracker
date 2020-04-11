@@ -18,9 +18,9 @@ public class CategoryController {
 						super();
 						this.categoryRepository = categoryRepository;
 			}
-			
+
 			@GetMapping("/categories")
-			Collection<Category> categories(){
-						return categoryRepository.findAll();
-			}
+   Collection<Category> categories(){
+      return categoryRepository.findAll();
+   }
 }

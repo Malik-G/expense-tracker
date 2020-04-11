@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name="expense")
 public class Expense {
 
-			@Id
+   @Id
    private Long id;
 
    private Instant expenseDate;
