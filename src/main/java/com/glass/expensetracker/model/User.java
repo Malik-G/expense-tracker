@@ -17,13 +17,13 @@ import lombok.Data;
 @Entity
 @Table(name="user")
 public class User {
-			
-			@Id
+
+   @Id
    private Long id;
-			
+
    private String name;
    private String email;
-   
+
    @OneToMany
    private Set<Category> category;
 }

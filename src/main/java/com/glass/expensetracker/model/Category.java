@@ -14,9 +14,9 @@ import lombok.Data;
 @Entity
 @Table(name="category")
 public class Category {
-			
-			@Id
-			private Long id;
-			
-			private String name;
+
+   @Id
+   private Long id;
+   
+   private String name;
 }
