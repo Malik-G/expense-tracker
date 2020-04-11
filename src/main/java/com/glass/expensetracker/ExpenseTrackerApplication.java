@@ -1,4 +1,4 @@
-package com.glass.expensetracker.expensetracker;
+package com.glass.expensetracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
