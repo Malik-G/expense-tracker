@@ -12,12 +12,12 @@ import com.glass.expensetracker.repository.CategoryRepository;
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
- private CategoryRepository categoryRepository;
- 
- public CategoryController(CategoryRepository categoryRepository) {
- 			super();
- 			this.categoryRepository = categoryRepository;
- }
+   private CategoryRepository categoryRepository;
+
+   public CategoryController(CategoryRepository categoryRepository) {
+			   super();
+			   this.categoryRepository = categoryRepository;
+   }
 
 			@GetMapping("/categories")
    Collection<Category> categories(){
