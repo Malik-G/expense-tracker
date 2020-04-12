@@ -6,6 +6,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Data;
 
 @AllArgsConstructor
@@ -17,6 +18,6 @@ public class Category {
 
    @Id
    private Long id;
-   
+   @NonNull
    private String name;
 }
