@@ -22,10 +22,8 @@ public class Expense {
    private Long id;
    private Instant expenseDate;
    private String description;
-
    @ManyToOne
    private Category category;
-
    @ManyToOne
    private User user;
 }

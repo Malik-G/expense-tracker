@@ -22,7 +22,6 @@ public class User {
    private Long id;
    private String name;
    private String email;
-
    @OneToMany
    private Set<Category> category;
 }
