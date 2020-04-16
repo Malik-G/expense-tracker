@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import './App.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,15 +8,33 @@ import Moment from 'react-moment';
 
 class Expenses extends Component {
   state = {
-    date: new Date()
+    date: new Date(),
+    isLoading: true,
+    expenses: [],
+    categories: []
+  }
+  async componentDidMount() {
+    const response = await fetch('/api/categories');
+    const body = await response.json();
+    this.setState({ isLoading: false, categories: body })
   }
 
   handleChange
 
   handleSubmit
-  
+
   render() {
-    const title = <h3>Add Expense</h3> 
+    const title = <h3>Add Expense</h3>;
+    const { isLoading, categories } = this.state;
+
+    if (isLoading) {
+      return (<div>Loading...</div>);
+    }
+
+    let categoryOptions = categories.map(category =>
+      <option>{category.name}</option>
+    )
+
     return (
       <>
         <Container>
@@ -28,7 +46,10 @@ class Expenses extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="category">Category</Label>
-              <Input type="text" name="category" id="category" onChange={this.handleChange} />
+              <select>
+                {categoryOptions}
+              </select>
+              {/* <Input type="text" name="category" id="category" onChange={this.handleChange} /> */}
             </FormGroup>
             <FormGroup>
               <Label for="expenseDate">Date</Label>

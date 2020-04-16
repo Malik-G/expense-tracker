@@ -14,8 +14,9 @@ class Category extends Component {
 
   render() {
     const { isLoading, categories } = this.state;
+    
     if (isLoading) {
-      return (<div>Loading...</div>)
+      return (<div>Loading...</div>);
     }
     return (
       <div>

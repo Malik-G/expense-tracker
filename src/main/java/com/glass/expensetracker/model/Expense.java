@@ -5,6 +5,9 @@ import java.time.Instant;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +25,11 @@ public class Expense {
    private Long id;
    private Instant expenseDate;
    private String description;
+   private String location;
    @ManyToOne
    private Category category;
+   
+   @JsonIgnore
    @ManyToOne
    private User user;
 }
