@@ -20,7 +20,7 @@ class Category extends Component {
     }
     return (
       <div>
-        <h2>Categories</h2>
+        <h2>Current Categories</h2>
         {categories.map(category => 
           <div id={category.id}>{category.name}</div>
         )}
