@@ -15,49 +15,47 @@ class Expenses extends Component {
     categories: [],
     expenses: [],
     postRequest: {
-      id: 104,
+      id: 0,
       expenseDate: new Date(),
       description: '',
       location: '',
-      category: { id: 3, name: 'Grocery' }
+      category: { id: 3, name: 'Grocery' },
+      amount: 0
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.initialLoad();
+  }
+
+  async initialLoad() {
+
+    console.log("hello")
     const categoryFetch = await fetch('/api/categories');
     const categoryResposne = await categoryFetch.json();
     this.setState({ isLoading: false, categories: categoryResposne })
 
     const expenseFetch = await fetch('/api/expenses');
-    const expensesResponse = await expenseFetch.json();
+    const expensesResponse = await expenseFetch.json()
     this.setState({ isLoading: false, expenses: expensesResponse })
   }
 
   deleteExpense = async (id) => {
-    await fetch(`/api/expenses/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(() => {
-      let updatedExpenses = [...this.state.expenses].filter(e => e.id !== id);
-      this.setState({ expenses: updatedExpenses });
-    });
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault()
-    console.log(this.state.postRequest)
-    await fetch(`/api/expenses`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state.postRequest),
-    })
-    this.componentDidMount()
+    if (window.confirm("Are you sure?") === false) {
+      return
+    }
+    else {
+      await fetch(`/api/expenses/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(() => {
+        let updatedExpenses = [...this.state.expenses].filter(e => e.id !== id);
+        this.setState({ expenses: updatedExpenses });
+      });
+    }
   }
 
   handleChange = (event) => {
@@ -65,7 +63,7 @@ class Expenses extends Component {
     const objPropertyValue = event.target.value;
     let postRequest = { ...this.state.postRequest };
     postRequest[objProperty] = objPropertyValue;
-    this.setState({ postRequest });
+    this.setState({ postRequest: postRequest });
   }
 
   handleCategoryChange = (event) => {
@@ -77,7 +75,7 @@ class Expenses extends Component {
       id: selectedId,
       name: selectedName
     }
-    this.setState({postRequest})
+    this.setState({ postRequest })
   }
 
   handleDateChange = (date) => {
@@ -85,6 +83,34 @@ class Expenses extends Component {
     console.log(moment(date).format('YYYY-MM-DD'))
     postRequest.expenseDate = date;
     this.setState({ postRequest });
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    let ex = [...this.state.expenses]
+    let pr = { ...this.state.postRequest }
+    let nextID = ex[ex.length - 1].id + 1
+    pr.id = nextID
+
+    await fetch(`/api/expenses`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pr)
+    });
+    this.initialLoad();
+    this.setState({
+      postRequest: {
+        id: 0,
+        expenseDate: new Date(),
+        description: '',
+        location: '',
+        category: { id: 3, name: 'Grocery' },
+        amount: 0
+      }
+    });
   }
 
   render() {
@@ -101,12 +127,16 @@ class Expenses extends Component {
     )
     return (
       <>
-        <Container>
+        <Container id="form-container">
           {title}
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="description">Description:</Label>
-              <Input type="text" name="description" id="description" onChange={this.handleChange} />
+              <Input value={this.state.postRequest.description} type="text" name="description" id="description" onChange={this.handleChange} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="amount">Amount:</Label>
+              <Input value={this.state.postRequest.amount} type="number" name="amount" id="amount" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
               <Label for="category">Category:</Label>
@@ -116,11 +146,11 @@ class Expenses extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="expenseDate">Date:</Label>
-              <DatePicker className="ml-2" id="expenseDate" selected={this.state.postRequest.expenseDate} onChange={this.handleDateChange} />
+              <DatePicker selected={this.state.postRequest.expenseDate} className="ml-2" id="expenseDate" onChange={this.handleDateChange} />
             </FormGroup>
             <FormGroup>
               <Label for="location">Location:</Label>
-              <Input type="text" name="location" id="location" onChange={this.handleChange} />
+              <Input value={this.state.postRequest.location} type="text" name="location" id="location" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
               <Button color="primary" type="submit" to="/home" className="mr-2">Save</Button>
@@ -133,9 +163,9 @@ class Expenses extends Component {
           <hr class="hr" data-content="$" />
         </div> */}
 
-        <Container className="mt-5">
+        <Container id="exp-container" className="mt-5">
           <h2>Expense Chart</h2>
-          <Table className="mt-3">
+          <Table className="mt-4">
             <thead>
               <tr>
                 <th width="10%">Date</th>
@@ -151,7 +181,7 @@ class Expenses extends Component {
                   <td> <Moment date={e.expenseDate} format="YYYY/MM/DD" /></td>
                   <td>{e.description}</td>
                   <td>{e.location}</td>
-                  <td>{e.amount}</td>
+                  <td>${e.amount}</td>
                   <td><Button size="sm" color="danger" onClick={() => this.deleteExpense(e.id)}>Delete</Button></td>
                 </tr>
               )}
