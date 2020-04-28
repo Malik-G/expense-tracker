@@ -71,7 +71,6 @@
   color:white;
   width: 100%;
   border:none;
-  font-family: 'PT Sans Caption', sans-serif;
   font-size:18px;
 }
 
@@ -79,49 +78,36 @@
   background:rgb(78, 163, 78);
   color:white;
   border:none;
-  font-family: 'PT Sans Caption', sans-serif;
   font-size:18px;
 }
 
 #amount{
-  width: 25%;
+  width: 48%;
 }
 
 #cat-container{
+  font-family: 'PT Sans Caption', sans-serif;
   text-align:center;
   max-width: 50%;
   margin: 5% auto;
   background: white;
-      /* padding: 20px;
-      box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
-      -webkit-box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
-      -moz-box-shadow: 8px 33px 23px -15px rgba(0,0,0,0.50); */
-}
-
-#description{
-  /* width: 50%; */
 }
 
 #exp-container h2{
   text-align:center;
 }
 
-#location{
-  /* width: 50%; */
-}
-
 #form-container{
-  
   min-width: 300px;
   max-width: 50%;
   margin: 5% auto;
-  /* border: 1px solid black; */
   background: white;
-      padding: 20px;
-      box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
-      -webkit-box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
-      -moz-box-shadow: 8px 33px 23px -15px rgba(0,0,0,0.50);
+  padding: 20px;
+  box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
+  -webkit-box-shadow: 10px 33px 35px -20px rgba(0,0,0,0.50);
+  -moz-box-shadow: 8px 33px 23px -15px rgba(0,0,0,0.50);
 }
-#form-container h2{
-text-align:center;
+
+#form-container h3{
+  text-align:center;
 }
