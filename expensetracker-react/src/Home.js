@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import NavBar from './NavBar';
 
 class Home extends Component {
-  state = {  }
-  render() { 
-    return ( <>
-      <h2 style={{display: 'flex', alignItems:'center', justifyContent: 'center', height: '100vh'}}>Welcome to $ta$h</h2>
-    </>
+  state = {}
+  render() {
+    return (
+      <>
+        <div className="home-img"></div>
+        <h1 className="home-title">Welcome to $ta$h</h1>
+      </>
     );
   }
 }
- 
+
 export default Home;

@@ -29,8 +29,6 @@ class Expenses extends Component {
   }
 
   async initialLoad() {
-
-    console.log("hello")
     const categoryFetch = await fetch('/api/categories');
     const categoryResposne = await categoryFetch.json();
     this.setState({ isLoading: false, categories: categoryResposne })
@@ -127,6 +125,7 @@ class Expenses extends Component {
     )
     return (
       <>
+        <div className="expenses-img"></div>
         <Container id="form-container">
           {title}
           <Form onSubmit={this.handleSubmit}>

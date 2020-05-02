@@ -53,6 +53,40 @@
   margin: 3px;
 }
 
+.categories-img{
+  background: url("./money1.jpg");
+	background-size: cover;
+	min-width: 100vw;
+	min-height: 20vh;
+  opacity: 0.8;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1.0), transparent);
+}
+
+.expenses-img{
+  background: url("./money2.jpg");
+	background-size: cover;
+	min-width: 100vw;
+	min-height: 20vh;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1.0), transparent);
+}
+
+.home-img{
+  background: url("./money3.jpg");
+	background-size: cover;
+	min-width: 100vw;
+	min-height: 100vh;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1.0), transparent);
+}
+
+.home-title {
+  position: absolute;
+	top: 45%;
+  margin-left: 10%;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 3rem;
+  color: black;
+}
+
 .hr-div {
     margin-top:50px;
 }
