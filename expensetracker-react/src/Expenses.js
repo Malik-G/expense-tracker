@@ -158,10 +158,6 @@ class Expenses extends Component {
           </Form>
         </Container>
 
-        {/* <div class="hr-div">
-          <hr class="hr" data-content="$" />
-        </div> */}
-
         <Container id="exp-container" className="mt-5">
           <h2>Expense Chart</h2>
           <Table className="mt-4">

@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.ManyToOne;
@@ -34,6 +37,7 @@ public class Expense {
    private LocalDate expenseDate;
    private String location;
    @ManyToOne
+   @OnDelete(action = OnDeleteAction.CASCADE)
    private Category category;
    @JsonIgnore
    @ManyToOne
